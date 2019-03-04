@@ -41,7 +41,9 @@ open class Interpolate {
     fileprivate var internalProgress: CGFloat = 0.0
     fileprivate var targetProgress: CGFloat = 0.0
     fileprivate var apply: ((Interpolatable) -> ())?
+    #if os(iOS)
     fileprivate var displayLink: CADisplayLink?
+    #endif
     
     // Animation completion handler, called when animate function stops.
     fileprivate var animationCompletion:(()->())?
@@ -94,7 +96,8 @@ open class Interpolate {
     }
 
     //MARK: Animation
-    
+
+    #if os(iOS)
     /**
      Animates to a targetProgress with a given duration.
      
@@ -118,6 +121,7 @@ open class Interpolate {
         displayLink?.invalidate()
         animationCompletion?()
     }
+    #endif
     
     //MARK: Internal
     
@@ -154,7 +158,8 @@ open class Interpolate {
     fileprivate func internalAdjustedProgress(_ progressValue: CGFloat) -> CGFloat {
         return function.apply(progressValue)
     }
-    
+
+    #if os(iOS)
     /**
      Next function used by animation(). Increments progress based on the duration.
      */
@@ -166,7 +171,7 @@ open class Interpolate {
             stopAnimation()
         }
     }
-    
+    #endif
 }
 
 /**

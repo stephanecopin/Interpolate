@@ -8,6 +8,11 @@
 
 import Foundation
 import QuartzCore
+#if os(iOS)
+import UIKit
+#else
+import Cocoa
+#endif
 
 /**
  *  Interpolatable protocol. Requires implementation of a vectorize function.
@@ -162,8 +167,16 @@ extension NSNumber: Interpolatable {
     }
 }
 
-/// UIColor Interpolatable extension.
-extension UIColor: Interpolatable {
+#if os(iOS)
+public typealias ColorType = UIColor
+public typealias EdgeInsetsType = UIEdgeInsets
+#else
+public typealias ColorType = NSColor
+public typealias EdgeInsetsType = NSEdgeInsets
+#endif
+
+/// ColorType Interpolatable extension.
+extension ColorType: Interpolatable {
     /**
      Vectorize UIColor.
      
@@ -171,7 +184,11 @@ extension UIColor: Interpolatable {
      */
     public func vectorize() -> IPValue {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        
+
+        #if os(macOS)
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return IPValue(type: .colorRGB, vectors: [red, green, blue, alpha])
+        #else
         if getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
             return IPValue(type: .colorRGB, vectors: [red, green, blue, alpha])
         }
@@ -187,11 +204,12 @@ extension UIColor: Interpolatable {
         getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
         
         return IPValue(type: .colorHSB, vectors: [hue, saturation, brightness, alpha])
+        #endif
     }
 }
 
-/// UIEdgeInsets Interpolatable extension.
-extension UIEdgeInsets: Interpolatable {
+/// EdgeInsetsType Interpolatable extension.
+extension EdgeInsetsType: Interpolatable {
     /**
      Vectorize UIEdgeInsets.
      
@@ -233,11 +251,11 @@ open class IPValue {
             case .cgSize:
                 return CGSize(width: vectors[0], height: vectors[1])
             case .colorRGB:
-                return UIColor(red: vectors[0], green: vectors[1], blue: vectors[2], alpha: vectors[3])
+                return ColorType(red: vectors[0], green: vectors[1], blue: vectors[2], alpha: vectors[3])
             case .colorMonochrome:
-                return UIColor(white: vectors[0], alpha: vectors[1])
+                return ColorType(white: vectors[0], alpha: vectors[1])
             case .colorHSB:
-                return UIColor(hue: vectors[0], saturation: vectors[1], brightness: vectors[2], alpha: vectors[3])
+                return ColorType(hue: vectors[0], saturation: vectors[1], brightness: vectors[2], alpha: vectors[3])
             case .double:
                 return Double(vectors[0])
             case .int:
@@ -245,7 +263,7 @@ open class IPValue {
             case .nsNumber:
                 return NSNumber(value: Double(vectors[0]))
             case .uiEdgeInsets:
-                return UIEdgeInsets(top: vectors[0], left: vectors[1], bottom: vectors[2], right: vectors[3])
+                return EdgeInsetsType(top: vectors[0], left: vectors[1], bottom: vectors[2], right: vectors[3])
         }
     }
     

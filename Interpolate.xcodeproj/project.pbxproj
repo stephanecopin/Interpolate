@@ -20,6 +20,11 @@
 		3448A0FD1CBA2A4400E818C2 /* Interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3448A0FC1CBA2A4400E818C2 /* Interpolate.swift */; };
 		347179CB1CBAEE410072B7AA /* BasicInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347179CA1CBAEE410072B7AA /* BasicInterpolation.swift */; };
 		34CF09A11CBAC7E800D1DD32 /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF09A01CBAC7E800D1DD32 /* Interpolatable.swift */; };
+		F463E030222DABD80031AAA5 /* Interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3448A0FC1CBA2A4400E818C2 /* Interpolate.swift */; };
+		F463E031222DABD80031AAA5 /* BasicInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347179CA1CBAEE410072B7AA /* BasicInterpolation.swift */; };
+		F463E032222DABD80031AAA5 /* SpringInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3440FD311CD4B83000AC4603 /* SpringInterpolation.swift */; };
+		F463E033222DABD80031AAA5 /* Interpolatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CF09A01CBAC7E800D1DD32 /* Interpolatable.swift */; };
+		F463E034222DAF2F0031AAA5 /* Interpolate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3448A0E51CBA2A1B00E818C2 /* Interpolate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +39,6 @@
 
 /* Begin PBXFileReference section */
 		342F95401CD80CD60026E005 /* InterpolatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpolatableTests.swift; sourceTree = "<group>"; };
-		343516861F72A77700338DD9 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		3440B2621CDFD0B3009A7712 /* Interpolate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interpolate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3440FD311CD4B83000AC4603 /* SpringInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringInterpolation.swift; sourceTree = "<group>"; };
 		3448A0E21CBA2A1A00E818C2 /* Interpolate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interpolate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +50,7 @@
 		3448A0FC1CBA2A4400E818C2 /* Interpolate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolate.swift; sourceTree = "<group>"; };
 		347179CA1CBAEE410072B7AA /* BasicInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInterpolation.swift; sourceTree = "<group>"; };
 		34CF09A01CBAC7E800D1DD32 /* Interpolatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolatable.swift; sourceTree = "<group>"; };
+		F463E028222DABB30031AAA5 /* Interpolate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interpolate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +76,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F463E025222DABB30031AAA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +93,10 @@
 				3448A0F01CBA2A1B00E818C2 /* InterpolateTests */,
 				3448A0E31CBA2A1A00E818C2 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		3448A0E31CBA2A1A00E818C2 /* Products */ = {
 			isa = PBXGroup;
@@ -89,6 +104,7 @@
 				3448A0E21CBA2A1A00E818C2 /* Interpolate.framework */,
 				3448A0EC1CBA2A1B00E818C2 /* InterpolateTests.xctest */,
 				3440B2621CDFD0B3009A7712 /* Interpolate.framework */,
+				F463E028222DABB30031AAA5 /* Interpolate.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,7 +114,6 @@
 			children = (
 				3448A0E51CBA2A1B00E818C2 /* Interpolate.h */,
 				3448A0E71CBA2A1B00E818C2 /* Info.plist */,
-				343516861F72A77700338DD9 /* Info-tvOS.plist */,
 				3448A0FC1CBA2A4400E818C2 /* Interpolate.swift */,
 				347179CA1CBAEE410072B7AA /* BasicInterpolation.swift */,
 				3440FD311CD4B83000AC4603 /* SpringInterpolation.swift */,
@@ -133,6 +148,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3448A0E61CBA2A1B00E818C2 /* Interpolate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F463E023222DABB30031AAA5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F463E034222DAF2F0031AAA5 /* Interpolate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +216,24 @@
 			productReference = 3448A0EC1CBA2A1B00E818C2 /* InterpolateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		F463E027222DABB30031AAA5 /* Interpolate macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F463E02F222DABB30031AAA5 /* Build configuration list for PBXNativeTarget "Interpolate macOS" */;
+			buildPhases = (
+				F463E023222DABB30031AAA5 /* Headers */,
+				F463E024222DABB30031AAA5 /* Sources */,
+				F463E025222DABB30031AAA5 /* Frameworks */,
+				F463E026222DABB30031AAA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Interpolate macOS";
+			productName = "Interpolate macOS";
+			productReference = F463E028222DABB30031AAA5 /* Interpolate.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -211,6 +252,10 @@
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
 					};
+					F463E027222DABB30031AAA5 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 3448A0DC1CBA2A1A00E818C2 /* Build configuration list for PBXProject "Interpolate" */;
@@ -226,6 +271,7 @@
 			projectRoot = "";
 			targets = (
 				3448A0E11CBA2A1A00E818C2 /* Interpolate */,
+				F463E027222DABB30031AAA5 /* Interpolate macOS */,
 				3440B2551CDFD0B3009A7712 /* Interpolate tvOS */,
 				3448A0EB1CBA2A1B00E818C2 /* InterpolateTests */,
 			);
@@ -248,6 +294,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3448A0EA1CBA2A1B00E818C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F463E026222DABB30031AAA5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,6 +341,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F463E024222DABB30031AAA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F463E030222DABD80031AAA5 /* Interpolate.swift in Sources */,
+				F463E033222DABD80031AAA5 /* Interpolatable.swift in Sources */,
+				F463E032222DABD80031AAA5 /* SpringInterpolation.swift in Sources */,
+				F463E031222DABD80031AAA5 /* BasicInterpolation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -308,7 +372,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 13;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Interpolate/Info-tvOS.plist";
+				INFOPLIST_FILE = Interpolate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -329,7 +393,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 13;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Interpolate/Info-tvOS.plist";
+				INFOPLIST_FILE = Interpolate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -390,6 +454,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -445,6 +510,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -517,6 +583,72 @@
 			};
 			name = Release;
 		};
+		F463E02D222DABB30031AAA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Interpolate/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roymarmelstein.Interpolate;
+				PRODUCT_NAME = Interpolate;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		F463E02E222DABB30031AAA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Interpolate/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roymarmelstein.Interpolate;
+				PRODUCT_NAME = Interpolate;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -552,6 +684,15 @@
 			buildConfigurations = (
 				3448A0FA1CBA2A1B00E818C2 /* Debug */,
 				3448A0FB1CBA2A1B00E818C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F463E02F222DABB30031AAA5 /* Build configuration list for PBXNativeTarget "Interpolate macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F463E02D222DABB30031AAA5 /* Debug */,
+				F463E02E222DABB30031AAA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -20,6 +20,8 @@
 //  Copyright © 2016 Roy Marmelstein. All rights reserved.
 //
 
+import CoreGraphics
+
 /// Spring interpolation
 open class SpringInterpolation: InterpolationFunction {
     

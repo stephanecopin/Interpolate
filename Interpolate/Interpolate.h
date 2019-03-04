@@ -6,7 +6,7 @@
 //  Copyright © 2016 Roy Marmelstein. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Interpolate.
 FOUNDATION_EXPORT double InterpolateVersionNumber;

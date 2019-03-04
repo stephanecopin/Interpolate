@@ -20,5 +20,7 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>13</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2019 Roy Marmelstein. All rights reserved.</string>
 </dict>
 </plist>
