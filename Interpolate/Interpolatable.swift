@@ -252,7 +252,7 @@ extension EdgeInsetsType: Interpolatable {
 }
 
 open class IPValue {
-    var vectors: [CGFloat]
+    public var vectors: [CGFloat]
     private let interpolatableCreator: ([CGFloat]) -> Interpolatable
 
     public init(value: IPValue) {
