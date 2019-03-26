@@ -8,10 +8,10 @@
 
 import Foundation
 import QuartzCore
-#if os(iOS)
-import UIKit
-#else
+#if os(macOS)
 import Cocoa
+#else
+import UIKit
 #endif
 
 /**
@@ -22,6 +22,10 @@ public protocol Interpolatable {
      Vectorizes the type and returns and IPValue
      */
     func vectorize() -> IPValue
+    /**
+     Vectorizes the type and returns and IPValue
+     */
+    static func interpolated(from vectors: [CGFloat]) -> Interpolatable
     /**
      The number of components of the IPValue
      */
@@ -34,13 +38,15 @@ public protocol Interpolatable {
 extension CATransform3D: Interpolatable {
     /**
      Vectorize CATransform3D.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]) {
-            CATransform3D(m11: $0[0], m12: $0[1], m13: $0[2], m14: $0[3], m21: $0[4], m22: $0[5], m23: $0[6], m24: $0[7], m31: $0[8], m32: $0[9], m33: $0[10], m34: $0[11], m41: $0[12], m42: $0[13], m43: $0[14], m44: $0[15])
-        }
+        return IPValue(vectors: [m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return CATransform3D(m11: vectors[0], m12: vectors[1], m13: vectors[2], m14: vectors[3], m21: vectors[4], m22: vectors[5], m23: vectors[6], m24: vectors[7], m31: vectors[8], m32: vectors[9], m33: vectors[10], m34: vectors[11], m41: vectors[12], m42: vectors[13], m43: vectors[14], m44: vectors[15])
     }
 
     public static let components: Int = 16
@@ -50,11 +56,15 @@ extension CATransform3D: Interpolatable {
 extension CGAffineTransform: Interpolatable {
     /**
      Vectorize CGAffineTransform.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [a, b, c, d, tx, ty]) { CGAffineTransform(a: $0[0], b: $0[1], c: $0[2], d: $0[3], tx: $0[4], ty: $0[5]) }
+        return IPValue(vectors: [a, b, c, d, tx, ty]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return CGAffineTransform(a: vectors[0], b: vectors[1], c: vectors[2], d: vectors[3], tx: vectors[4], ty: vectors[5])
     }
 
     public static let components: Int = 6
@@ -64,11 +74,15 @@ extension CGAffineTransform: Interpolatable {
 extension CGFloat: Interpolatable {
     /**
      Vectorize CGFloat.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [self]) { $0[0] }
+        return IPValue(vectors: [self]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return vectors[0]
     }
 
     public static let components: Int = 1
@@ -78,11 +92,15 @@ extension CGFloat: Interpolatable {
 extension CGPoint: Interpolatable {
     /**
      Vectorize CGPoint.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [x, y]) { CGPoint(x: $0[0], y: $0[1]) }
+        return IPValue(vectors: [x, y]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return CGPoint(x: vectors[0], y: vectors[1])
     }
 
     public static let components: Int = 2
@@ -92,11 +110,15 @@ extension CGPoint: Interpolatable {
 extension CGRect: Interpolatable {
     /**
      Vectorize CGRect.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [origin.x, origin.y, size.width, size.height]) { CGRect(x: $0[0], y: $0[1], width: $0[2], height: $0[3]) }
+        return IPValue(vectors: [origin.x, origin.y, size.width, size.height]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return CGRect(x: vectors[0], y: vectors[1], width: vectors[2], height: vectors[3])
     }
 
     public static let components: Int = 4
@@ -106,11 +128,15 @@ extension CGRect: Interpolatable {
 extension CGSize: Interpolatable {
     /**
      Vectorize CGSize.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [width, height]) { CGSize(width: $0[0], height: $0[1]) }
+        return IPValue(vectors: [width, height]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return CGSize(width: vectors[0], height: vectors[1])
     }
 
     public static let components: Int = 2
@@ -120,11 +146,15 @@ extension CGSize: Interpolatable {
 extension Double: Interpolatable {
     /**
      Vectorize Double.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [CGFloat(self)]) { Double($0[0]) }
+        return IPValue(vectors: [CGFloat(self)]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return Double(vectors[0])
     }
 
     public static let components: Int = 1
@@ -134,11 +164,15 @@ extension Double: Interpolatable {
 extension Int: Interpolatable {
     /**
      Vectorize Int.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [CGFloat(self)]) { Int($0[0]) }
+        return IPValue(vectors: [CGFloat(self)]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return Int(vectors[0])
     }
 
     public static let components: Int = 1
@@ -148,17 +182,21 @@ extension Int: Interpolatable {
 extension NSNumber: Interpolatable {
     /**
      Vectorize NSNumber.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [CGFloat(truncating: self)]) { $0[0] as NSNumber }
+        return IPValue(vectors: [CGFloat(truncating: self)]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return vectors[0] as NSNumber
     }
 
     public static let components: Int = 1
 }
 
-#if os(iOS)
+#if !os(macOS)
 public typealias ColorType = UIColor
 public typealias EdgeInsetsType = UIEdgeInsets
 #else
@@ -170,30 +208,25 @@ public typealias EdgeInsetsType = NSEdgeInsets
 extension ColorType: Interpolatable {
     /**
      Vectorize ColorType.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-
         #if os(macOS)
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return IPValue(vectors: [red, green, blue, alpha]) { NSColor(calibratedRed: $0[0], green: $0[1], blue: $0[2], alpha: $0[3]) }
+        return IPValue(vectors: [red, green, blue, alpha]) { NSColor.interpolated(from: $0) }
         #else
-        if getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-            return IPValue(vectors: [red, green, blue, alpha]) { ColorType(red: $0[0], green: $0[1], blue: $0[2], alpha: $0[3]) }
-        }
-        
-        var white: CGFloat = 0
-        if getWhite(&white, alpha: &alpha) {
-            return IPValue(vectors: [white, alpha, 0.0, 0.0]) { ColorType(white: $0[0], alpha: $0[1]) }
-        }
-        
-        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0
-        
-        getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        
-        return IPValue(vectors: [hue, saturation, brightness, alpha]) { ColorType(hue: $0[0], saturation: $0[1], brightness: $0[2], alpha: $0[3]) }
+        _ = getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return IPValue(vectors: [red, green, blue, alpha]) { type(of: self).interpolated(from: $0) }
+        #endif
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        #if os(macOS)
+        return NSColor(calibratedRed: vectors[0], green: vectors[1], blue: vectors[2], alpha: vectors[3])
+        #else
+        return UIColor(red: vectors[0], green: vectors[1], blue: vectors[2], alpha: vectors[3])
         #endif
     }
 
@@ -204,11 +237,15 @@ extension ColorType: Interpolatable {
 extension EdgeInsetsType: Interpolatable {
     /**
      Vectorize UIEdgeInsets.
-     
+
      - returns: IPValue
      */
     public func vectorize() -> IPValue {
-        return IPValue(vectors: [top, left, bottom, right]) { EdgeInsetsType(top: $0[0], left: $0[1], bottom: $0[2], right: $0[3]) }
+        return IPValue(vectors: [top, left, bottom, right]) { type(of: self).interpolated(from: $0) }
+    }
+
+    public static func interpolated(from vectors: [CGFloat]) -> Interpolatable {
+        return EdgeInsetsType(top: vectors[0], left: vectors[1], bottom: vectors[2], right: vectors[3])
     }
 
     public static let components: Int = 4
@@ -217,21 +254,21 @@ extension EdgeInsetsType: Interpolatable {
 open class IPValue {
     var vectors: [CGFloat]
     private let interpolatableCreator: ([CGFloat]) -> Interpolatable
-    
+
     public init(value: IPValue) {
         self.vectors = value.vectors
         self.interpolatableCreator = value.interpolatableCreator
     }
-    
+
     public init(vectors: [CGFloat], interpolatableCreator: @escaping ([CGFloat]) -> Interpolatable) {
         self.vectors = vectors
         self.interpolatableCreator = interpolatableCreator
     }
-    
+
     func toInterpolatable() -> Interpolatable {
         return interpolatableCreator(self.vectors)
     }
-    
+
 }
 
 
