@@ -6,6 +6,7 @@
 //  Copyright © 2016 Roy Marmelstein. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
 
 /**

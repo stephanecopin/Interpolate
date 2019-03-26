@@ -6,7 +6,11 @@
 //  Copyright © 2016 Roy Marmelstein. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
+#if os(iOS)
+import UIKit
+#endif
 
 /// Interpolate class. Responsible for conducting interpolations.
 open class Interpolate {
